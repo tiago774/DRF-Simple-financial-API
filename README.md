@@ -29,11 +29,11 @@ cd DRF
 
 ### 2. Crie e ative o ambiente virtual
 
-
+```
 python -m venv .venv
 source .venv/bin/activate  # Linux/Mac
-# .venv\Scripts\activate   # Windows
-
+.venv\Scripts\activate   # Windows
+```
 
 ### 3. Instale as dependências
 
@@ -198,7 +198,7 @@ curl -X GET "http://localhost:8000/clientes/?version=v2" \
 ## Modelos de Dados
 
 ### Cliente
-```
+
 | Campo | Tipo | Descricao |
 |-------|------|-----------|
 | id | Integer | Identificador unico |
@@ -208,9 +208,9 @@ curl -X GET "http://localhost:8000/clientes/?version=v2" \
 | tipo_pessoa | String | F (Fisica) ou J (Juridica) |
 | telefone | String | Telefone no formato (XX) XXXXX-XXXX |
 | ativo | Boolean | Cliente ativo ou inativo |
-```
+
 ### Conta
-```
+
 | Campo | Tipo | Descricao |
 |-------|------|-----------|
 | id | Integer | Identificador unico |
@@ -220,9 +220,9 @@ curl -X GET "http://localhost:8000/clientes/?version=v2" \
 | tipo_conta | String | CC (Corrente), CP (Poupanca), CI (Investimento) |
 | saldo | Decimal | Saldo atual |
 | ativa | Boolean | Conta ativa ou inativa |
-```
+
 ### Transacao
-```
+
 | Campo | Tipo | Descricao |
 |-------|------|-----------|
 | id | Integer | Identificador unico |
@@ -231,7 +231,7 @@ curl -X GET "http://localhost:8000/clientes/?version=v2" \
 | valor | Decimal | Valor da transacao |
 | descricao | String | Descricao opcional |
 | data_transacao | DateTime | Data e hora da transacao |
-```
+
 ## Validacoes
 
 - CPF/CNPJ valido (formato com pontos e tracos)
@@ -248,4 +248,6 @@ python manage.py test financeiro --verbosity=2
 
 ## Licenca
 
-Este projeto esta sob a licenca MIT.# DRF---Simple-financial-API
+Este projeto esta sob a licenca MIT.
+
+# DRF---Simple-financial-API

@@ -22,10 +22,10 @@ API RESTful simples para gerenciamento de instituição financeira, desenvolvida
 
 ### 1. Clone o repositório
 
-
+```
 git clone https://github.com/tiago774/DRF---Simple-financial-API.git
 cd DRF
-
+```
 
 ### 2. Crie e ative o ambiente virtual
 
@@ -44,13 +44,13 @@ pip install -r requirements.txt
 ### 4. Configure as variáveis de ambiente
 
 Crie um arquivo `.env` na raiz do projeto:
-
+```
 env
 SECRET_KEY=sua-chave-secreta-aqui
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
 DATABASE_URL=sqlite:///db.sqlite3
-
+```
 
 ### 5. Execute as migrações
 
@@ -75,7 +75,7 @@ A API estará disponível em: `http://localhost:8000/`
 ## Endpoints da API
 
 ### Clientes
-
+```
 | Metodo | Endpoint | Descricao |
 |--------|----------|-----------|
 | GET | `/clientes/` | Lista todos os clientes |
@@ -84,9 +84,9 @@ A API estará disponível em: `http://localhost:8000/`
 | PUT | `/clientes/{id}/` | Atualiza um cliente |
 | DELETE | `/clientes/{id}/` | Remove um cliente |
 | GET | `/clientes/{id}/contas/` | Lista contas de um cliente |
-
+```
 ### Contas
-
+```
 | Metodo | Endpoint | Descricao |
 |--------|----------|-----------|
 | GET | `/contas/` | Lista todas as contas |
@@ -94,29 +94,29 @@ A API estará disponível em: `http://localhost:8000/`
 | GET | `/contas/{id}/` | Detalhes de uma conta |
 | PUT | `/contas/{id}/` | Atualiza uma conta |
 | GET | `/contas/{id}/extrato/` | Extrato da conta |
-
+```
 ### Transacoes
-
+```
 | Metodo | Endpoint | Descricao |
 |--------|----------|-----------|
 | GET | `/transacoes/` | Lista todas as transacoes |
 | POST | `/transacoes/` | Cria uma nova transacao |
 | GET | `/transacoes/{id}/` | Detalhes de uma transacao |
-
+```
 ## Exemplos de Uso
 
 ### Autenticacao
 
 Todas as requisicoes exigem autenticacao Basic Auth:
 
-
+```
 # Usuario: admin
 # Senha: admin123
-
+```
 
 ### Criar um Cliente
 
-
+```
 curl -X POST http://localhost:8000/clientes/ \
   -u admin:admin123 \
   -H "Content-Type: application/json" \
@@ -127,11 +127,11 @@ curl -X POST http://localhost:8000/clientes/ \
     "tipo_pessoa": "F",
     "telefone": "(11) 99999-9999"
   }'
-
+```
 
 ### Criar uma Conta
 
-
+```
 curl -X POST http://localhost:8000/contas/ \
   -u admin:admin123 \
   -H "Content-Type: application/json" \
@@ -141,11 +141,11 @@ curl -X POST http://localhost:8000/contas/ \
     "agencia": "0001",
     "tipo_conta": "CC"
   }'
+```
 
+### Realizar um Deploy
 
-### Realizar um Deposito
-
-
+```
 curl -X POST http://localhost:8000/transacoes/ \
   -u admin:admin123 \
   -H "Content-Type: application/json" \
@@ -155,48 +155,50 @@ curl -X POST http://localhost:8000/transacoes/ \
     "valor": 500.00,
     "descricao": "Deposito inicial"
   }'
-
+```
 
 ### Consultar Extrato
 
-
+```
 curl -X GET http://localhost:8000/contas/1/extrato/ \
   -u admin:admin123
-
+```
 
 ### Listar Clientes
-
+```
 curl -X GET http://localhost:8000/clientes/ \
   -u admin:admin123
-
+```
 ### Buscar Clientes por Nome
-
+```
 curl -X GET "http://localhost:8000/clientes/?search=Joao" \
   -u admin:admin123
-
+```
 ### Filtrar Contas por Tipo
-
+```
 curl -X GET "http://localhost:8000/contas/?tipo_conta=CC" \
   -u admin:admin123
-
+```
 ## Versionamento da API
 
 A API suporta versionamento via query parameter:
 
 
 # Versao 1 (padrao)
+```
 curl -X GET http://localhost:8000/clientes/ \
   -u admin:admin123
-
+```
 # Versao 2
+```
 curl -X GET "http://localhost:8000/clientes/?version=v2" \
   -u admin:admin123
-
+```
 
 ## Modelos de Dados
 
 ### Cliente
-
+```
 | Campo | Tipo | Descricao |
 |-------|------|-----------|
 | id | Integer | Identificador unico |
@@ -206,9 +208,9 @@ curl -X GET "http://localhost:8000/clientes/?version=v2" \
 | tipo_pessoa | String | F (Fisica) ou J (Juridica) |
 | telefone | String | Telefone no formato (XX) XXXXX-XXXX |
 | ativo | Boolean | Cliente ativo ou inativo |
-
+```
 ### Conta
-
+```
 | Campo | Tipo | Descricao |
 |-------|------|-----------|
 | id | Integer | Identificador unico |
@@ -218,9 +220,9 @@ curl -X GET "http://localhost:8000/clientes/?version=v2" \
 | tipo_conta | String | CC (Corrente), CP (Poupanca), CI (Investimento) |
 | saldo | Decimal | Saldo atual |
 | ativa | Boolean | Conta ativa ou inativa |
-
+```
 ### Transacao
-
+```
 | Campo | Tipo | Descricao |
 |-------|------|-----------|
 | id | Integer | Identificador unico |
@@ -229,7 +231,7 @@ curl -X GET "http://localhost:8000/clientes/?version=v2" \
 | valor | Decimal | Valor da transacao |
 | descricao | String | Descricao opcional |
 | data_transacao | DateTime | Data e hora da transacao |
-
+```
 ## Validacoes
 
 - CPF/CNPJ valido (formato com pontos e tracos)

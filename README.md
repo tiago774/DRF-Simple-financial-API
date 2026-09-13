@@ -37,9 +37,9 @@ source .venv/bin/activate  # Linux/Mac
 
 ### 3. Instale as dependências
 
-
+```
 pip install -r requirements.txt
-
+```
 
 ### 4. Configure as variáveis de ambiente
 
